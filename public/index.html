@@ -334,12 +334,14 @@
       addBubble('assistant', '⚠️ Tato stránka je otevřená přímo ze souboru (file://). Aby chat fungoval, musí běžet přes backend server — spusťte `npm start` a otevřete **http://localhost:3000** v prohlížeči.');
       return;
     }
-    try {
-      const res = await fetch('/api/health');
-      const health = await res.json();
-      if (!health.apiKeyConfigured) {
-        addBubble('assistant', '⚠️ Backend běží, ale nemá nastavený `ANTHROPIC_API_KEY` v souboru `.env`. Doplňte klíč a server restartujte (`npm start`).');
-      }
+      try {
+    const res = await fetch('https://nordivo-assistant.vercel.app/api/health');
+    const health = await res.json();
+    if (!health.apiKeyConfigured) {
+      addBubble('assistant', '⚠️ Backend běží, ale nemá nastavený `ANTHROPIC_API_KEY` v souboru `.env`. Doplňte klíč a server restartujte (`npm start`).');
+    }
+ 
+      
     } catch (err) {
       console.error('[NORDIVO] Backend health-check selhal:', err);
       addBubble('assistant', '⚠️ Nepodařilo se spojit s backendem na `/api/health`. Zkontrolujte, že server běží (`npm start`) a že tuto stránku otevíráte na stejné adrese/portu jako backend (výchozí http://localhost:3000).');
