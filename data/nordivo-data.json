@@ -1,0 +1,254 @@
+{
+  "eshop": {
+    "nazev": "NORDIVO.cz",
+    "ico": "09472631",
+    "dic": "CZ09472631",
+    "sidlo": "Jabloňová 1842/17, 100 00 Praha 10",
+    "telefon": "+420 212 555 481",
+    "podpora": "podpora@nordivo.cz",
+    "reklamace_email": "reklamace@nordivo.cz",
+    "objednavky_email": "objednavky@nordivo.cz",
+    "servis_email": "servis@nordivo.cz",
+    "linka": "po-pá 8:00-17:00",
+    "mena": "CZK"
+  },
+  "doprava": [
+    { "zpusob": "Zásilkovna", "cena": "79 Kč" },
+    { "zpusob": "Balíkovna", "cena": "69 Kč" },
+    { "zpusob": "PPL", "cena": "99 Kč" },
+    { "zpusob": "DPD", "cena": "109 Kč" },
+    { "zpusob": "Osobní odběr", "cena": "zdarma" }
+  ],
+  "doba_doruceni": "1-3 pracovní dny, osobní odběr 1-2 pracovní dny",
+  "platby": ["platební karta", "Apple Pay", "Google Pay", "bankovní převod", "dobírka (+39 Kč)"],
+  "produkty": [
+    { "sku": "MOB-001", "nazev": "NORDIVO Phone X1 128 GB", "cena": "8 990 Kč", "zaruka": "24 měsíců" },
+    { "sku": "MOB-002", "nazev": "NORDIVO Phone X1 Pro 256 GB", "cena": "12 490 Kč", "zaruka": "24 měsíců" },
+    { "sku": "NOTE-001", "nazev": "NORDIVO Book 14", "cena": "18 990 Kč", "zaruka": "24 měsíců" },
+    { "sku": "NOTE-002", "nazev": "NORDIVO Book 16 Pro", "cena": "27 990 Kč", "zaruka": "24 měsíců" },
+    { "sku": "AUD-001", "nazev": "NORDIVO AirBuds S", "cena": "1 990 Kč", "zaruka": "24 měsíců" },
+    { "sku": "AUD-002", "nazev": "NORDIVO Headset Pro", "cena": "3 490 Kč", "zaruka": "24 měsíců" },
+    { "sku": "WATCH-001", "nazev": "NORDIVO Watch Active", "cena": "4 990 Kč", "zaruka": "24 měsíců" },
+    { "sku": "CAB-001", "nazev": "USB-C kabel 2 m", "cena": "349 Kč", "zaruka": "24 měsíců" },
+    { "sku": "CHG-001", "nazev": "NORDIVO FastCharge 65W", "cena": "899 Kč", "zaruka": "24 měsíců" },
+    { "sku": "HOME-001", "nazev": "NORDIVO Air Mini", "cena": "2 490 Kč", "zaruka": "24 měsíců" }
+  ],
+  "zamestnanci": [
+    { "id": "EMP-001", "jmeno": "Daniel Marek", "role": "vedoucí reklamačního oddělení" },
+    { "id": "EMP-002", "jmeno": "Klára Benešová", "role": "reklamační pracovník" },
+    { "id": "EMP-003", "jmeno": "Filip Němec", "role": "reklamační pracovník" },
+    { "id": "EMP-004", "jmeno": "Veronika Malá", "role": "pracovník zákaznické podpory" },
+    { "id": "EMP-005", "jmeno": "Michal Urban", "role": "vedoucí skladu" }
+  ],
+  "servis": {
+    "nazev": "NORDIVO Servis Praha",
+    "adresa": "Průmyslová 118/24, 102 00 Praha 10",
+    "telefon": "+420 212 555 490",
+    "email": "servis@nordivo.cz",
+    "provoz": "po-pá 8:00-16:00"
+  },
+  "zakaznici": [
+    {
+      "customer_id": "CUS-1001",
+      "jmeno": "Jan Novák",
+      "email": "jan.novak@example.test",
+      "telefon": "+420 701 234 567",
+      "adresa": "Lipová 248/12, 130 00 Praha 3",
+      "objednavky": [
+        { "order_id": "ORD-2026-00142", "produkt": "NORDIVO AirBuds S", "sku": "AUD-001", "hodnota": "1 990 Kč", "vytvoreno": "2026-08-03", "doruceno": "2026-08-05", "doprava": "Zásilkovna", "platba": "platební karta", "stav": "DORUČENA" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00031",
+          "order_id": "ORD-2026-00142",
+          "product_id": "AUD-001",
+          "datum": "2026-08-18",
+          "typ": "VÝPADKY PŘIPOJENÍ",
+          "priorita": "NORMÁLNÍ",
+          "popis_zakaznika": "Pravé sluchátko se po přibližně 20 minutách používání odpojí a nejde znovu připojit.",
+          "pozadovane_reseni": "OPRAVA NEBO VÝMĚNA",
+          "stav": "ČEKÁ NA SERVIS",
+          "employee_id": "EMP-003",
+          "historie": [
+            { "kdy": "2026-08-18 09:14", "co": "reklamace vytvořena, stav NOVÁ" },
+            { "kdy": "2026-08-19 09:31", "co": "reklamace přijata pracovníkem, stav PŘIJATA" },
+            { "kdy": "2026-08-20 10:05", "co": "předána k řešení, stav V ŘEŠENÍ" },
+            { "kdy": "2026-08-21 14:20", "co": "závada potvrzena, produkt odeslán do servisu, stav ČEKÁ NA SERVIS" }
+          ],
+          "internal_note": "Závada se podařila reprodukovat. Produkt byl odeslán k servisní diagnostice.",
+          "refundace": { "id": "REF-2026-00011", "castka": "1 990 Kč", "stav": "ČEKÁ NA SCHVÁLENÍ" }
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1002",
+      "jmeno": "Petra Svobodová",
+      "email": "petra.svobodova@example.test",
+      "telefon": "+420 702 345 678",
+      "adresa": "Sluneční 731/8, 150 00 Praha 5",
+      "objednavky": [
+        { "order_id": "ORD-2026-00157", "produkt": "NORDIVO Phone X1 128 GB", "sku": "MOB-001", "hodnota": "8 990 Kč", "vytvoreno": "2026-08-07", "doruceno": "2026-08-10", "doprava": "PPL", "platba": "Google Pay" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00032",
+          "order_id": "ORD-2026-00157",
+          "product_id": "MOB-001",
+          "datum": "2026-08-18",
+          "typ": "PROBLÉM S NABÍJENÍM",
+          "priorita": "VYSOKÁ",
+          "popis_zakaznika": "Telefon se při nabíjení výrazně zahřívá a několikrát se sám restartoval.",
+          "pozadovane_reseni": "OPRAVA NEBO VÝMĚNA",
+          "stav": "V ŘEŠENÍ",
+          "employee_id": "EMP-002",
+          "internal_note": "Zákazník byl požádán o zaslání fotografie nabíjecího konektoru a použité nabíječky.",
+          "refundace": { "id": "REF-2026-00012", "castka": "8 990 Kč", "stav": "NEVYŘÍZENO" }
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1003",
+      "jmeno": "Martin Dvořák",
+      "email": "martin.dvorak@example.test",
+      "telefon": "+420 703 456 789",
+      "adresa": "Květnová 94/16, 602 00 Brno",
+      "objednavky": [
+        { "order_id": "ORD-2026-00161", "produkt": "NORDIVO FastCharge 65W", "sku": "CHG-001", "hodnota": "899 Kč", "vytvoreno": "2026-08-09", "doruceno": "2026-08-11", "doprava": "Balíkovna", "platba": "dobírka" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00033",
+          "order_id": "ORD-2026-00161",
+          "product_id": "CHG-001",
+          "datum": "2026-08-18",
+          "typ": "PRODUKT NEFUNGUJE",
+          "priorita": "NORMÁLNÍ",
+          "popis_zakaznika": "Nabíječka přestala po týdnu fungovat.",
+          "pozadovane_reseni": "VÝMĚNA",
+          "stav": "PŘIJATA",
+          "employee_id": "EMP-002",
+          "vymena": { "id": "VYM-2026-00007", "puvodni": "NORDIVO FastCharge 65W (CHG-001)", "nahradni": "stejný model", "stav": "ČEKÁ NA SCHVÁLENÍ" },
+          "refundace": { "id": "REF-2026-00013", "castka": "899 Kč", "stav": "NEVYŘÍZENO" }
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1004",
+      "jmeno": "Lucie Černá",
+      "email": "lucie.cerna@example.test",
+      "telefon": "+420 704 567 890",
+      "adresa": "Javorová 421/3, 700 30 Ostrava",
+      "objednavky": [
+        { "order_id": "ORD-2026-00178", "produkt": "NORDIVO Book 14", "sku": "NOTE-001", "hodnota": "18 990 Kč", "vytvoreno": "2026-08-12", "doruceno": "2026-08-14", "doprava": "DPD", "platba": "platební karta" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00034",
+          "order_id": "ORD-2026-00178",
+          "product_id": "NOTE-001",
+          "datum": "2026-08-19",
+          "typ": "PRODUKT NEFUNGUJE",
+          "priorita": "VYSOKÁ",
+          "popis_zakaznika": "Notebook má při běžné práci náhodné modré obrazovky a následně se restartuje.",
+          "pozadovane_reseni": "OPRAVA",
+          "stav": "ČEKÁ NA SERVIS",
+          "employee_id": "EMP-003",
+          "internal_note": "Předáno servisnímu oddělení k diagnostice."
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1005",
+      "jmeno": "Tomáš Procházka",
+      "email": "tomas.prochazka@example.test",
+      "telefon": "+420 705 678 901",
+      "adresa": "Zahradní 122/45, 301 00 Plzeň",
+      "objednavky": [
+        { "order_id": "ORD-2026-00182", "produkt": "NORDIVO Watch Active", "sku": "WATCH-001", "hodnota": "4 990 Kč", "vytvoreno": "2026-08-13", "doruceno": "2026-08-15", "doprava": "Zásilkovna" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00035",
+          "order_id": "ORD-2026-00182",
+          "product_id": "WATCH-001",
+          "typ": "VADNÁ BATERIE",
+          "priorita": "NORMÁLNÍ",
+          "popis_zakaznika": "Hodinky se přes noc vybíjí zhruba z 80 % na 10 %, přestože jsou nové.",
+          "pozadovane_reseni": "VÝMĚNA",
+          "stav": "NOVÁ"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1006",
+      "jmeno": "Anna Veselá",
+      "email": "anna.vesela@example.test",
+      "telefon": "+420 706 789 012",
+      "adresa": "Lesní 57/11, 779 00 Olomouc",
+      "objednavky": [
+        { "order_id": "ORD-2026-00191", "produkt": "NORDIVO Headset Pro", "sku": "AUD-002", "hodnota": "3 490 Kč", "vytvoreno": "2026-08-14", "doruceno": "2026-08-17", "doprava": "PPL" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00036",
+          "order_id": "ORD-2026-00191",
+          "product_id": "AUD-002",
+          "typ": "VADNÉ PŘÍSLUŠENSTVÍ",
+          "priorita": "NORMÁLNÍ",
+          "popis_zakaznika": "Levý reproduktor hraje výrazně tišeji než pravý.",
+          "pozadovane_reseni": "VÝMĚNA",
+          "stav": "PŘIJATA",
+          "vymena": { "id": "VYM-2026-00008", "puvodni": "NORDIVO Headset Pro", "nahradni": "stejný model", "stav": "PŘIPRAVENO" }
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1007",
+      "jmeno": "David Král",
+      "email": "david.kral@example.test",
+      "telefon": "+420 707 890 123",
+      "adresa": "Rybářská 215/7, 370 01 České Budějovice",
+      "objednavky": [
+        { "order_id": "ORD-2026-00203", "produkt": "NORDIVO Phone X1 Pro 256 GB", "sku": "MOB-002", "hodnota": "12 490 Kč", "vytvoreno": "2026-08-16", "doruceno": "2026-08-18" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00037",
+          "order_id": "ORD-2026-00203",
+          "product_id": "MOB-002",
+          "typ": "VADNÝ DISPLEJ",
+          "priorita": "NÍZKÁ",
+          "popis_zakaznika": "Na displeji je od rozbalení malá černá tečka.",
+          "pozadovane_reseni": "VÝMĚNA",
+          "stav": "V ŘEŠENÍ",
+          "internal_note": "Jedná se pravděpodobně o vadný pixel. Čekáme na posouzení."
+        }
+      ]
+    },
+    {
+      "customer_id": "CUS-1008",
+      "jmeno": "Eva Horáková",
+      "email": "eva.horakova@example.test",
+      "telefon": "+420 708 901 234",
+      "adresa": "Školní 328/19, 460 01 Liberec",
+      "objednavky": [
+        { "order_id": "ORD-2026-00211", "produkt": "NORDIVO Air Mini", "sku": "HOME-001", "hodnota": "2 490 Kč", "vytvoreno": "2026-08-17", "doruceno": "2026-08-19" }
+      ],
+      "reklamace": [
+        {
+          "claim_id": "REC-2026-00038",
+          "order_id": "ORD-2026-00211",
+          "product_id": "HOME-001",
+          "typ": "PRODUKT NEFUNGUJE",
+          "priorita": "VYSOKÁ",
+          "popis_zakaznika": "Zařízení po zapnutí vydává neobvyklý zvuk a po několika minutách se vypne.",
+          "pozadovane_reseni": "OPRAVA",
+          "stav": "NOVÁ"
+        }
+      ]
+    }
+  ],
+  "stavy": ["NOVÁ", "PŘIJATA", "ČEKÁ NA DOPLNĚNÍ", "V ŘEŠENÍ", "ČEKÁ NA SERVIS", "SCHVÁLENA", "ZAMÍTNUTA", "VYŘÍZENA", "VRÁCENÍ PENĚZ", "VÝMĚNA PRODUKTU", "UZAVŘENA"],
+  "typy_reklamace": ["PRODUKT NEFUNGUJE", "PRODUKT SE NEZAPÍNÁ", "POŠKOZENÝ PRODUKT", "VADNÁ BATERIE", "VADNÝ DISPLEJ", "VADNÉ TLAČÍTKO", "PROBLÉM S NABÍJENÍM", "VÝPADKY PŘIPOJENÍ", "VADNÉ PŘÍSLUŠENSTVÍ", "PRODUKT PŘIŠEL POŠKOZENÝ", "JINÁ ZÁVADA"],
+  "vysledky": ["OPRAVA", "VÝMĚNA PRODUKTU", "VRÁCENÍ PENĚZ", "SLEVA", "REKLAMACE ZAMÍTNUTA", "ZÁVADA SE NEPROJEVILA"]
+}
