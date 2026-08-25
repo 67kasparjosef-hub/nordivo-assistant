@@ -152,3 +152,4 @@ app.listen(PORT, () => {
     console.log('[NORDIVO] >>> Chat nebude fungovat, dokud nenastavíte ANTHROPIC_API_KEY v .env a server nerestartujete. <<<');
   }
 });
+module.exports = app;
