@@ -1,53 +1,39 @@
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'ANTHROPIC_API_KEY not configured' });
-  }
-
+  if (req.method!== 'POST') return res.status(405).json({error:'Method not allowed'});
   try {
-    const { messages } = req.body;
-    if (!messages || !Array.isArray(messages)) {
-      return res.status(400).json({ error: 'Messages required' });
+    const { message } = req.body;
+    if (!message) return res.status(400).json({error:'No message'});
+
+    let produktyText = "";
+    try {
+      const feedRes = await fetch('https://813343.myshoptet.com/universal.xml');
+      const xml = await feedRes.text();
+      const matches = [...xml.matchAll(/<PRODUCTNAME>.*?CDATA\[(.*?)\].*?PRICE_VAT>(.*?)<\/PRICE_VAT>.*?URL>.*?CDATA\[(.*?)\].*?\/URL>/gs)];
+      const matches2 = matches.length? matches : [...xml.matchAll(/<PRODUCTNAME>(.*?)<\/PRODUCTNAME>.*?<PRICE_VAT>(.*?)<\/PRICE_VAT>.*?<URL>(.*?)<\/URL>/gs)];
+      produktyText = matches2.slice(0, 20).map(m => `- ${m[1]} | ${m[2]} Kč | ${m[3]}`).join('\n');
+    } catch (e) {
+      produktyText = "Produkty momentálně načítám.";
     }
 
-    const systemPrompt = `Jsi NORDIVO reklamační asistent. Pomáháš zákazníkům s reklamacemi, vrácením a výměnou zboží.
-Odpovídej česky, stručně, přátelsky a profesionálně. Pokud potřebuješ více informací, zeptej se.
-Nikdy neříkej že jsi AI od Anthropic - jsi NORDIVO asistent.`;
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
+        'Authorization': 'Bearer ' + process.env.OPENAI_API_KEY
       },
       body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 1024,
-        system: systemPrompt,
-        messages: messages
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: `Jsi Nordivo Assistant pro e-shop 813343.myshoptet.com. Znáš tyto produkty:\n${produktyText}\nOdpovídej česky, stručně, vždy s cenou a odkazem. Když produkt nemáš, doporuč podobný.` },
+          { role: 'user', content: message }
+        ]
       })
     });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error('Anthropic error:', errText);
-      return res.status(500).json({ error: 'AI provider error', details: errText });
-    }
-
-    const data = await response.json();
-    const reply = data.content?.[0]?.text || 'Omlouvám se, nepodařilo se získat odpověď.';
-
-    return res.status(200).json({ reply });
-
-  } catch (error) {
-    console.error('Chat handler error:', error);
-    return res.status(500).json({ error: 'Internal server error', message: error.message });
+    const data = await r.json();
+    if (data.error) return res.status(500).json({reply: 'OpenAI chyba: ' + data.error.message});
+    const reply = data.choices?.[0]?.message?.content || 'Zadna odpoved';
+    return res.status(200).json({reply});
+  } catch (e) {
+    return res.status(500).json({reply: 'Server error: ' + e.message});
   }
 }
