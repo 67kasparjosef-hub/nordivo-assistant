@@ -4,19 +4,33 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
   try {
-    var shop = (req.query && req.query.shop) || (req.body && req.body.shop) || '781631.myshoptet.com';
-    var message = (req.body && req.body.message) ? req.body.message.toLowerCase() : '';
+    var shop = (req.query && req.query.shop) || (req.body && req.body.shop) || '813343.myshoptet.com';
+    var message = (req.body && req.body.message)? req.body.message.toLowerCase() : '';
     var products = [];
-    try {
-      var feedUrl = 'https://' + shop + '/export/productsComplete.xml';
-      var r = await fetch(feedUrl);
-      var xml = await r.text();
-      var matches = [...xml.matchAll(/<NAME>(.*?)<\/NAME>.*?<PRICE_VAT>(.*?)<\/PRICE_VAT>.*?<URL>(.*?)<\/URL>/gs)];
-      products = matches.slice(0, 15).map(function(m) { return { name: m[1], price: m[2], url: m[3] }; });
-    } catch (e) {}
+    var urls = [
+      'https://' + shop + '/export/products.xml',
+      'https://' + shop + '/export/productsComplete.xml',
+      'https://' + shop + '/export/heureka.xml'
+    ];
+    for (var u of urls) {
+      try {
+        var r = await fetch(u);
+        if (!r.ok) continue;
+        var xml = await r.text();
+        if (xml.length < 100) continue;
+        var matches = [...xml.matchAll(/<PRODUCTNAME>(.*?)<\/PRODUCTNAME>.*?<PRICE_VAT>(.*?)<\/PRICE_VAT>.*?<URL>(.*?)<\/URL>/gs)];
+        if (!matches.length) {
+          matches = [...xml.matchAll(/<NAME>(.*?)<\/NAME>.*?<PRICE_VAT>(.*?)<\/PRICE_VAT>.*?<URL>(.*?)<\/URL>/gs)];
+        }
+        if (matches.length) {
+          products = matches.slice(0, 15).map(function(m) { return { name: m[1], price: m[2], url: m[3] }; });
+          break;
+        }
+      } catch (e) {}
+    }
     var reply = '';
     if (!products.length) {
-      reply = 'Katalog pro ' + shop + ' se neda nacist. Zkontroluj export.';
+      reply = 'Katalog pro ' + shop + ' se neda nacist. Zkontroluj export. Zkousene URL: ' + urls.join(', ');
     } else if (message.includes('co prodava') || message.includes('co nabiz') || message === '') {
       reply = 'Na ' + shop + ' prodavame:\n\n' + products.map(function(p) { return '- ' + p.name + ' - ' + p.price + ' Kc - ' + p.url; }).join('\n');
     } else {
