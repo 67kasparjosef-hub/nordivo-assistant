@@ -19,22 +19,25 @@ button{background:#111;color:white;border:none;border-radius:24px;padding:10px 1
 <body>
 <div id="chat">
 <div id="header">NORDIVO - Reklamační asistent</div>
-<div id="messages"><div class="msg bot">Dobrý den! Zeptejte se mě na produkty z NORDIVO - znám celý katalog z 813343.myshoptet.com</div></div>
-<div id="inputRow"><input id="messageInput" placeholder="Napište dotaz..." onkeydown="if(event.key==='Enter')sendMessage()"><button onclick="sendMessage()">Odeslat</button></div>
-</div>
-<script>
-function addMessage(t,type){const m=document.getElementById('messages');const d=document.createElement('div');d.className='msg '+type;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
-async function sendMessage(){
-  const input=document.getElementById('messageInput');
-  const message=input.value.trim();
-  if(!message)return;
-  addMessage(message,'user');
-  input.value='';
-  try{
-    const res=await fetch('/api/chat',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({message:message})
+    <div id="messages"><div class="msg bot">Dobrý den! Zeptejte se mě na produkty - znám celý katalog.</div></div>
+    <div id="inputRow"><input id="messageInput" placeholder="Napište dotaz..." onkeydown="if(event.key==='Enter')sendMessage()"><button onclick="sendMessage()">Odeslat</button></div>
+    </div>
+    <script>
+    function addMessage(t,type){const m=document.getElementById('messages');const d=document.createElement('div');d.className='msg '+type;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
+    async function sendMessage(){
+    const input=document.getElementById('messageInput');
+    const message=input.value.trim();
+    if(!message)return;
+    addMessage(message,'user');
+    input.value='';
+    try{
+        const urlParams = new URLSearchParams(window.location.search);
+        const shop = urlParams.get('shop') || '813343.myshoptet.com';
+        const res=await fetch(`/api/chat?shop=${shop}`,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({message: message, shop: shop})
+            });
     });
     const data=await res.json();
     addMessage(data.reply||'Omlouvám se, zkuste to znovu','bot');
