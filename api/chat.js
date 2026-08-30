@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method!== 'POST') return res.status(405).json({error: 'Method not allowed'});
   const body = req.body || {};
-  const shopDomain = body.shop || '813343.myshoptet.com';
+  const shopDomain = body.shop || req.query.shop || '813343.myshoptet.com';
   if (!body.message) return res.status(400).json({reply: "Napiš dotaz."});
   try {
     let productsText = `- Dámská mikina NORDIVO - 890 Kč - https://${shopDomain}/damska-mikina/\n- Pánské tričko - 490 Kč - https://${shopDomain}/panske-tricko/\n- Dámské legíny - 690 Kč - https://${shopDomain}/damske-leginy/\n- Kšiltovka NORDIVO - 390 Kč - https://${shopDomain}/ksiltovka/\n- Batoh - 1290 Kč - https://${shopDomain}/batoh/\n- Peněženka - 590 Kč - https://${shopDomain}/penezenka/`;
